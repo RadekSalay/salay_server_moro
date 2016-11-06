@@ -19,21 +19,21 @@ public class RemoteManagerImpl implements RemoteManager {
     private HibernateTransactionManager transactionManager;
 
     @Override
-    public String saveOnServer(final Ticket ticket) {
-        String message;
+    public boolean saveOnServer(final Ticket ticket) {
+        boolean respond;
         try{
             Session session = transactionManager.getSessionFactory().openSession();
             Transaction tx = session.beginTransaction();
             session.persist(ticket);
             tx.commit();
             session.close();
-            message = "Ticket was saved."+ticket.toString();
-            log.info(message);
+            respond = true;
+            log.info("Ticket was saved."+ticket.toString());
         }catch(Exception e){
-            message = "Ticket was not saved"+ ticket.toString();
-            log.error(message,e);
+            respond = false;
+            log.error("Ticket was not saved"+ ticket.toString(),e);
         }
-        return message;
+        return respond;
     }
 
     @Override

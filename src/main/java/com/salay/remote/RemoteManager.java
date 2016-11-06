@@ -7,6 +7,6 @@ import com.salay.model.Ticket;
  */
 public interface RemoteManager {
 
-    String saveOnServer(Ticket ticket);
+    boolean saveOnServer(Ticket ticket);
     void nudge();
 }
