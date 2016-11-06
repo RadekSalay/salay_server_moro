@@ -2,10 +2,7 @@ package com.salay.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -22,6 +19,8 @@ public class Ticket {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ticket_seq_gen")
+    @SequenceGenerator(name = "ticket_seq_gen",sequenceName = "ticket_id_seq")
     public int getId() {
         return id;
     }
