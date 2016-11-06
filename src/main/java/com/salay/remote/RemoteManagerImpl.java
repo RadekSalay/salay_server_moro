@@ -38,6 +38,5 @@ public class RemoteManagerImpl implements RemoteManager {
 
     @Override
     public void nudge() {
-        log.info("Client is alive");
     }
 }
